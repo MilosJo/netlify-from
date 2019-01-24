@@ -32,7 +32,6 @@ export default class Form extends React.Component {
     const { name, email, message } = this.state;
     return (
       <form
-        action="/success"
         name="contact"
         method="post"
         data-netlify="true"
