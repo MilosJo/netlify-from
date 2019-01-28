@@ -38,8 +38,6 @@ export default class Form extends React.Component {
         name="contact"
         method="POST"
         onSubmit={this.handleSubmit}
-        data-netlify="true"
-        action="/success"
       >
         <input type="hidden" name="form-name" value="contact" />
         <p>
