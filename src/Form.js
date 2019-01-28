@@ -29,10 +29,10 @@ export default class Form extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  handleType = e => this.setState({ type: e.target.value })
+  handleType = e => this.setState({ type: e.target.name })
 
   render() {
-    const { name, email, message } = this.state;
+    const { name, email, message, type } = this.state;
     return (
       <form
         name="contact"
@@ -50,8 +50,8 @@ export default class Form extends React.Component {
           </label>
         </p>
         <p>
-          <label for="general">general<input onChange={this.handleType} type="radio" name="general" value="general" /></label>
-          <label for="quote">quote<input onChange={this.handleType} type="radio" name="quote" value="quote" /></label>
+          <label for="general">general<input onChange={this.handleType} type="radio" name="general" value={type} /></label>
+          <label for="quote">quote<input onChange={this.handleType} type="radio" name="quote" value={type} /></label>
         </p>
         <p>
           <label>
