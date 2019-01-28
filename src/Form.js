@@ -50,8 +50,8 @@ export default class Form extends React.Component {
           </label>
         </p>
         <p>
-          <label for="general">general<input onChange={this.handleType} type="radio" name="general" value={type} /></label>
-          <label for="quote">quote<input onChange={this.handleType} type="radio" name="quote" value={type} /></label>
+          <label htmlFor="general">general<input onChange={this.handleType} type="radio" name="general" value={type} /></label>
+          <label htmlFor="quote">quote<input onChange={this.handleType} type="radio" name="quote" value={type} /></label>
         </p>
         <p>
           <label>
