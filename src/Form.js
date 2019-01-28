@@ -9,7 +9,7 @@ const encode = (data) => {
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", message: "", type: "general" };
+    this.state = { fName: "", lName: "", email: "", message: "", type: "general" };
   }
 
   /* Here’s the juicy bit for posting the form submission */
@@ -32,13 +32,14 @@ export default class Form extends React.Component {
   handleType = e => this.setState({ type: e.target.name })
 
   render() {
-    const { name, email, message, type } = this.state;
+    const { fName, lName, email, message, type } = this.state;
     return (
       <form
         name="contact"
         method="POST"
         onSubmit={this.handleSubmit}
         data-netlify="true"
+        action="/success"
       >
         <input type="hidden" name="form-name" value="contact" />
         <p>
@@ -55,8 +56,14 @@ export default class Form extends React.Component {
         </p>
         <p>
           <label>
-            Your Name:
-            <input type="text" name="name" value={name} onChange={this.handleChange} />
+            Your FName:
+            <input type="text" name="fName" value={fName} onChange={this.handleChange} />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your LName:
+            <input type="text" name="lName" value={lName} onChange={this.handleChange} />
           </label>
         </p>
         <p>
