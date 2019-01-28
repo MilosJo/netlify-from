@@ -36,7 +36,7 @@ export default class Form extends React.Component {
         name="contact"
         method="POST"
         onSubmit={this.handleSubmit}
-        action="./Success"
+        action="/Success"
       >
         <input type="hidden" name="form-name" value="contact" />
         <p>
