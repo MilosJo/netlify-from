@@ -9,7 +9,7 @@ const encode = (data) => {
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { fName: "", lName: "", email: "", message: "", type: "general" };
+    this.state = { fName: "", lName: "", email: "", message: "", type: "general", role: "" };
   }
 
   /* Here’s the juicy bit for posting the form submission */
@@ -29,9 +29,12 @@ export default class Form extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  handleType = e => this.setState({ type: e.target.name })
+  handleType = e => this.setState({ type: e.target.name });
+
+  handleRoles = e =>this.setState({ role: e.target.value });
 
   render() {
+    console.log(this.state.role);
     const { fName, lName, email, message, type } = this.state;
     return (
       <form
@@ -42,7 +45,7 @@ export default class Form extends React.Component {
         <input type="hidden" name="form-name" value="contact" />
         <p>
           <label>Your Role:
-            <select name="role[]" multiple>
+            <select onChange={this.handleRoles} name="role[]" multiple>
               <option value="leader">Leader</option>
               <option value="follower">Follower</option>
             </select>
