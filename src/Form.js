@@ -37,12 +37,12 @@ export default class Form extends React.Component {
       type: '',
       role: '',
       fName: '',
-      lName: '',
-      email: '',
-      message: '',
       fNameValid: null,
+      lName: '',
       lNameValid: null,
+      email: '',
       emailValid: null,
+      message: '',
       messageValid: null,
     };
   }
@@ -61,9 +61,7 @@ export default class Form extends React.Component {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           "form-name": "contact",
-          name: this.state.name,
-          email: this.state.email,
-          message: this.state.message,
+          ...this.state
         }),
       })
       .then(() => this.setState({
