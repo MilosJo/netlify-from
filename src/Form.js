@@ -34,11 +34,15 @@ export default class Form extends React.Component {
     this.state = {
       sent: false,
       error: false,
-      name: '',
-      nameValid: null,
+      type: '',
+      role: '',
+      fName: '',
+      lName: '',
       email: '',
-      emailValid: null,
       message: '',
+      fNameValid: null,
+      lNameValid: null,
+      emailValid: null,
       messageValid: null,
     };
   }
@@ -47,7 +51,8 @@ export default class Form extends React.Component {
 
   handleSubmit = e => {
     if (
-      this.state.nameValid &&
+      this.state.fNameValid &&
+      this.state.lNameValid &&
       this.state.emailValid &&
       this.state.messageValid
     ) {
@@ -64,8 +69,10 @@ export default class Form extends React.Component {
       .then(() => this.setState({
         sent: true,
         error: false,
-        name: '',
-        nameValid: null,
+        fName: '',
+        fNameValid: null,
+        lName: '',
+        lNameValid: null,
         email: '',
         emailValid: null,
         message: '',
@@ -79,16 +86,19 @@ export default class Form extends React.Component {
       this.setState(prevState => ({
         sent: false,
         error: 'Please fill out all the fields.',
-        name: prevState.name,
-        nameValid: prevState.nameValid || false,
+        fName: prevState.name,
+        fNameValid: prevState.nameValid || false,
+        lName: prevState.name,
+        lNameValid: prevState.nameValid || false,
         email: prevState.email,
         emailValid: prevState.emailValid || false,
         message: prevState.message,
         messageValid: prevState.messageValid || false,
       }));
     }
-      
+
     e.preventDefault();
+    console.log(this.state);
   };
 
   handleChange = (e) => {
@@ -115,13 +125,17 @@ export default class Form extends React.Component {
           <label>Your Role:
             <select onChange={this.handleRoles} name="role[]" multiple>
               <option value="leader">Leader</option>
-              <option value="follower" selected>Follower</option>
+              <option value="follower">Follower</option>
             </select>
           </label>
         </p>
         <p>
-          <label htmlFor="general">general<input onChange={this.handleType} type="radio" name="general" value={type} /></label>
-          <label htmlFor="quote">quote<input onChange={this.handleType} type="radio" name="quote" value={type} /></label>
+          <label htmlFor="general">general
+            <input onChange={this.handleType} type="radio" name="general" value={type} checked={type === 'general'} />
+          </label>
+          <label htmlFor="quote">quote
+            <input onChange={this.handleType} type="radio" name="quote" value={type} checked={type === 'quote'} />
+          </label>
         </p>
         <p>
           <label>
