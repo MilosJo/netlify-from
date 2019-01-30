@@ -1,4 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
+import isEmail from 'validator/lib/isEmail';
+import posed, { PoseGroup } from 'react-pose';
+
+const hasContent = value => (value.length >= 3 ? true : false);
+
+const validate = (value, type) =>
+  (type === 'email' ? isEmail(value) : hasContent(value));
 
 const encode = (data) => {
   return Object.keys(data)
@@ -6,36 +14,96 @@ const encode = (data) => {
     .join("&");
 }
 
+const Message = posed.div({
+  enter: {
+    opacity: 1,
+    height: 'auto',
+    transition: { duration: 500 },
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: { duration: 500 },
+  },
+});
+
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { fName: "", lName: "", email: "", message: "", type: "general", role: "" };
+
+    this.state = {
+      sent: false,
+      error: false,
+      name: '',
+      nameValid: null,
+      email: '',
+      emailValid: null,
+      message: '',
+      messageValid: null,
+    };
   }
 
   /* Here’s the juicy bit for posting the form submission */
 
   handleSubmit = e => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state, })
-     
-    })
-      .then(() => alert("Success!"))
-      .catch(error => alert(error));
-
+    if (
+      this.state.nameValid &&
+      this.state.emailValid &&
+      this.state.messageValid
+    ) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          name: this.state.name,
+          email: this.state.email,
+          message: this.state.message,
+        }),
+      })
+      .then(() => this.setState({
+        sent: true,
+        error: false,
+        name: '',
+        nameValid: null,
+        email: '',
+        emailValid: null,
+        message: '',
+        messageValid: null,
+      }, () => setTimeout(() => this.setState({ sent: false }), 3500)))
+      .catch(() => this.setState({
+        sent: false,
+        error: 'Ooops... Something went wrong, please try again.',
+      }));
+    } else {
+      this.setState(prevState => ({
+        sent: false,
+        error: 'Please fill out all the fields.',
+        name: prevState.name,
+        nameValid: prevState.nameValid || false,
+        email: prevState.email,
+        emailValid: prevState.emailValid || false,
+        message: prevState.message,
+        messageValid: prevState.messageValid || false,
+      }));
+    }
+      
     e.preventDefault();
   };
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      [`${e.target.name}Valid`]: validate(e.target.value, e.target.type),
+    });
+  }
 
   handleType = e => this.setState({ type: e.target.name });
 
   handleRoles = e =>this.setState({ role: e.target.value });
 
   render() {
-    console.log(this.state.role);
-    const { fName, lName, email, message, type } = this.state;
+    const { fName, lName, email, message, type, sent, error } = this.state;
     return (
       <form
         name="contact"
@@ -47,7 +115,7 @@ export default class Form extends React.Component {
           <label>Your Role:
             <select onChange={this.handleRoles} name="role[]" multiple>
               <option value="leader">Leader</option>
-              <option value="follower">Follower</option>
+              <option value="follower" selected>Follower</option>
             </select>
           </label>
         </p>
@@ -78,6 +146,20 @@ export default class Form extends React.Component {
             Message:
             <textarea name="message" value={message} onChange={this.handleChange} />
           </label>
+        </p>
+        <p>
+        <PoseGroup flipMove={false}>
+            {sent &&
+              <Message key="message-sent">
+                {'Thank you for contacting us, someone will get in touch soon!'}
+              </Message>
+            }
+            {error &&
+              <Message key="message-error">
+                {error}
+              </Message>
+            }
+          </PoseGroup>
         </p>
         <p>
           <button name="submit" type="submit">Send</button>
