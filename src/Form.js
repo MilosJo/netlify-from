@@ -128,10 +128,8 @@ export default class Form extends React.Component {
           </label>
         </p>
         <p>
-          <label>General Inquiry
+          <label>Inquiry type
             <input type="radio" name="type" value="General Inquiry" checked/>
-          </label>
-          <label>Request a Quote
             <input type="radio" name="type" value="Request a Quote"/>
           </label>
         </p>
