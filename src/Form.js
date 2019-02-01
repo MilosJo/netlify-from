@@ -33,7 +33,7 @@ export default class Form extends React.Component {
     this.state = {
       sent: false,
       error: false,
-      inquiry: 'General Inquiry',
+      inquiry: 'general',
       role: '',
       fName: '',
       fNameValid: null,
@@ -60,7 +60,11 @@ export default class Form extends React.Component {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           "form-name": "contact",
-          ...this.state
+          fName: this.state.fName,
+          lName: this.state.lName,
+          email: this.state.email,
+          message: this.state.message,
+          inquiry: this.state.inquiry
         }),
       })
       .then(() => this.setState({
