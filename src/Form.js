@@ -64,7 +64,8 @@ export default class Form extends React.Component {
           lName: this.state.lName,
           email: this.state.email,
           message: this.state.message,
-          inquiry: this.state.inquiry
+          inquiry: this.state.inquiry,
+          role: this.state.role
         }),
       })
       .then(() => this.setState({
