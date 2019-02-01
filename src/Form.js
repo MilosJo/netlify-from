@@ -34,7 +34,7 @@ export default class Form extends React.Component {
     this.state = {
       sent: false,
       error: false,
-      type: '',
+      type: 'general',
       role: '',
       fName: '',
       fNameValid: null,
@@ -129,10 +129,10 @@ export default class Form extends React.Component {
         </p>
         <p>
           <label htmlFor="general">general
-            <input onChange={this.handleType} type="radio" name="general" value={type} checked={type === 'general'} />
+            <input onChange={this.handleType} type="radio" name="general" value="general" checked={type === 'general'} />
           </label>
-          <label htmlFor="quote">quote
-            <input onChange={this.handleType} type="radio" name="quote" value={type} checked={type === 'quote'} />
+          <label htmlFor="general">quote
+            <input onChange={this.handleType} type="radio" name="quote" value="quote" checked={type === 'quote'} />
           </label>
         </p>
         <p>
