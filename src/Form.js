@@ -133,7 +133,8 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="General Inquiry"
               id="general"
-              checked
+              checked={inquiry === 'General Inquiry'}
+              onChange={this.handleInquiry}
             />
             General Inquiry
           </label>
@@ -143,6 +144,8 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="Request a Quote"
               id="quote"
+              checked={inquiry === 'Request a Quote'}
+              onChange={this.handleInquiry}
             />
             Request a Quote
           </label>
