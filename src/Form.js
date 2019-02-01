@@ -105,7 +105,7 @@ export default class Form extends React.Component {
     });
   }
 
-  handleType = ({ target }) => this.setState({ type: target.getAttribute('id') });
+  handleType = ({ target }) => this.setState({ type: target.value });
 
   handleRoles = ({ target }) =>this.setState({ role: target.value });
 
@@ -134,7 +134,7 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="General Inquiry"
               id="general"
-              checked={type === 'general'}
+              checked={type === 'General Inquiry'}
               onClick={this.handleType}
             />
           </label>
@@ -145,7 +145,7 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="Request a Quote"
               id="quote"
-              checked={type === 'quote'}
+              checked={type === 'Request a Quote'}
               onClick={this.handleType}
             />
           </label>
