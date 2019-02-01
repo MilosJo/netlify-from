@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import isEmail from 'validator/lib/isEmail';
 import posed, { PoseGroup } from 'react-pose';
 
@@ -106,7 +105,7 @@ export default class Form extends React.Component {
     });
   }
 
-  handleType = e => this.setState({ type: e.target.value });
+  handleType = e => this.setState({ type: e.target.getAttribute('id') });
 
   handleRoles = e =>this.setState({ role: e.target.value });
 
@@ -128,9 +127,27 @@ export default class Form extends React.Component {
           </label>
         </p>
         <p>
-          <label>Inquiry type
-            <input type="radio" name="type" value="General Inquiry" checked/>
-            <input type="radio" name="type" value="Request a Quote"/>
+          <label>
+            General Inquiry
+            <input
+              type="radio"
+              name="type"
+              value="General Inquiry"
+              id="general"
+              checked={type === 'general'}
+              onChange={this.handleType}
+            />
+          </label>
+          <label>
+            Request a Quote
+            <input
+              type="radio"
+              name="type"
+              value="Request a Quote"
+              id="quote"
+              checked={type === 'quote'}
+              onChange={this.handleType}
+            />
           </label>
         </p>
         <p>
