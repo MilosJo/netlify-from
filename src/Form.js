@@ -130,22 +130,22 @@ export default class Form extends React.Component {
           <label>
             <input
               type="radio"
-              name="inquiry-type"
-              value="General Inquiry"
-              checked={inquiry === 'General Inquiry'}
+              name="inquiry"
+              value="general"
               onChange={this.handleInquiry}
+              checked={inquiry === 'general'}
             />
-            General Inquiry
+            general
           </label>
           <label>
             <input
               type="radio"
-              name="inquiry-type"
-              value="Request a Quote"
-              checked={inquiry === 'Request a Quote'}
+              name="inquiry"
+              value="quote"
               onChange={this.handleInquiry}
+              checked={inquiry === 'quote'}
             />
-            Request a Quote
+            quote
           </label>
         </p>
         <p>
