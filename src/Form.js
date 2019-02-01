@@ -105,9 +105,9 @@ export default class Form extends React.Component {
     });
   }
 
-  handleType = e => this.setState({ type: e.target.getAttribute('id') });
+  handleType = ({ target }) => this.setState({ type: target.getAttribute('id') });
 
-  handleRoles = e =>this.setState({ role: e.target.value });
+  handleRoles = ({ target }) =>this.setState({ role: target.value });
 
   render() {
     const { fName, lName, email, message, type, sent, error } = this.state;
@@ -131,22 +131,22 @@ export default class Form extends React.Component {
             General Inquiry
             <input
               type="radio"
-              name="type"
+              name="inquiry-type"
               value="General Inquiry"
               id="general"
               checked={type === 'general'}
-              onChange={this.handleType}
+              onClick={this.handleType}
             />
           </label>
           <label>
             Request a Quote
             <input
               type="radio"
-              name="type"
+              name="inquiry-type"
               value="Request a Quote"
               id="quote"
               checked={type === 'quote'}
-              onChange={this.handleType}
+              onClick={this.handleType}
             />
           </label>
         </p>
@@ -174,8 +174,8 @@ export default class Form extends React.Component {
             <textarea name="message" value={message} onChange={this.handleChange} />
           </label>
         </p>
-        <p>
-        <PoseGroup flipMove={false}>
+        <div>
+          <PoseGroup flipMove={false}>
             {sent &&
               <Message key="message-sent">
                 {'Thank you for contacting us, someone will get in touch soon!'}
@@ -187,7 +187,7 @@ export default class Form extends React.Component {
               </Message>
             }
           </PoseGroup>
-        </p>
+        </div>
         <p>
           <button name="submit" type="submit">Send</button>
         </p>
