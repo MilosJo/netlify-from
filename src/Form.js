@@ -105,7 +105,7 @@ export default class Form extends React.Component {
     });
   }
 
-  handleInquiry = ({ target }) => this.setState({ type: target.value });
+  handleInquiry = ({ target }) => this.setState({ inquiry: target.value });
 
   handleRoles = ({ target }) =>this.setState({ role: target.value });
 
@@ -132,7 +132,6 @@ export default class Form extends React.Component {
               type="radio"
               name="inquiry-type"
               value="General Inquiry"
-              id="general"
               checked={inquiry === 'General Inquiry'}
               onChange={this.handleInquiry}
             />
@@ -143,7 +142,6 @@ export default class Form extends React.Component {
               type="radio"
               name="inquiry-type"
               value="Request a Quote"
-              id="quote"
               checked={inquiry === 'Request a Quote'}
               onChange={this.handleInquiry}
             />
