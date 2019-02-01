@@ -33,7 +33,7 @@ export default class Form extends React.Component {
     this.state = {
       sent: false,
       error: false,
-      type: 'general',
+      type: 'General Inquiry',
       role: '',
       fName: '',
       fNameValid: null,
@@ -128,26 +128,26 @@ export default class Form extends React.Component {
         </p>
         <p>
           <label htmlFor="general">
-            General Inquiry
             <input
               type="radio"
               name="inquiry-type"
               value="General Inquiry"
               id="general"
               checked={type === 'General Inquiry'}
-              onClick={this.handleType}
+              onChange={this.handleType}
             />
+            General Inquiry
           </label>
           <label htmlFor="quote">
-            Request a Quote
             <input
               type="radio"
               name="inquiry-type"
               value="Request a Quote"
               id="quote"
               checked={type === 'Request a Quote'}
-              onClick={this.handleType}
+              onChange={this.handleType}
             />
+            Request a Quote
           </label>
         </p>
         <p>
