@@ -106,7 +106,7 @@ export default class Form extends React.Component {
     });
   }
 
-  handleType = e => this.setState({ type: e.target.name });
+  handleType = e => this.setState({ type: e.target.value });
 
   handleRoles = e =>this.setState({ role: e.target.value });
 
