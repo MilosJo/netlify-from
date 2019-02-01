@@ -127,7 +127,7 @@ export default class Form extends React.Component {
           </label>
         </p>
         <p>
-          <label>
+          <label htmlFor="general">
             General Inquiry
             <input
               type="radio"
@@ -138,7 +138,7 @@ export default class Form extends React.Component {
               onClick={this.handleType}
             />
           </label>
-          <label>
+          <label htmlFor="quote">
             Request a Quote
             <input
               type="radio"
