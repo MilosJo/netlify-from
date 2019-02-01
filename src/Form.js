@@ -33,7 +33,7 @@ export default class Form extends React.Component {
     this.state = {
       sent: false,
       error: false,
-      type: 'General Inquiry',
+      inquiry: 'General Inquiry',
       role: '',
       fName: '',
       fNameValid: null,
@@ -105,12 +105,12 @@ export default class Form extends React.Component {
     });
   }
 
-  handleType = ({ target }) => this.setState({ type: target.value });
+  handleInquiry = ({ target }) => this.setState({ type: target.value });
 
   handleRoles = ({ target }) =>this.setState({ role: target.value });
 
   render() {
-    const { fName, lName, email, message, type, sent, error } = this.state;
+    const { fName, lName, email, message, inquiry, sent, error } = this.state;
     return (
       <form
         name="contact"
@@ -133,8 +133,8 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="General Inquiry"
               id="general"
-              checked={type === 'General Inquiry'}
-              onChange={this.handleType}
+              checked={inquiry === 'General Inquiry'}
+              onChange={this.handleInquiry}
             />
             General Inquiry
           </label>
@@ -144,8 +144,8 @@ export default class Form extends React.Component {
               name="inquiry-type"
               value="Request a Quote"
               id="quote"
-              checked={type === 'Request a Quote'}
-              onChange={this.handleType}
+              checked={inquiry === 'Request a Quote'}
+              onChange={this.handleInquiry}
             />
             Request a Quote
           </label>
