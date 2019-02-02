@@ -135,7 +135,7 @@ export default class Form extends React.Component {
           <label>
             <input
               type="radio"
-              name="inquiry"
+              name="inquiry[]"
               value="general"
               onChange={this.handleInquiry}
               checked={inquiry === 'general'}
@@ -145,7 +145,7 @@ export default class Form extends React.Component {
           <label>
             <input
               type="radio"
-              name="inquiry"
+              name="inquiry[]"
               value="quote"
               onChange={this.handleInquiry}
               checked={inquiry === 'quote'}
